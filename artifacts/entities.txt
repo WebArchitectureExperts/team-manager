@@ -1,0 +1,19 @@
+# Place all entities in (as a list) this document
+# Try to make the names descriptive
+# One indent indicates attributes to that entity
+
+Organization
+  Attributes
+  ...
+
+Teams
+  Players
+  Coaches
+  ...
+
+People
+  Addresses
+  Phones
+  Emails
+
+
