@@ -2,18 +2,148 @@
 # Try to make the names descriptive
 # One indent indicates attributes to that entity
 
+
+# I came to the conclusion that the best way to represent an entity having multple references to an object (i.e. the many-to-many relationship: a team has multiple players) is to use joint-tables.
+# To use this, we do not list the reference in the entity and instead make another table that will hold the entity id and the id of objects being reference
+# See below for what I mean
+
+# The structure of where Orgs and Leagues is not yet determined but either way both need to be included
+
 Organization
-  Attributes
-  ...
+  organization_id : int
+  name : string
+
+(Joint-Table) Organizations-Leagues
+  organization_id : int
+  league_id : int
+#Depending, we may use this joint table instead:
+(Joint-Table) Organizations-Teams
+  organization_id : int
+  team_id : int
+
+League
+  league_id : int
+  name : string
+
+(Joint-Table) Leagues-Organizations
+  league_id : int
+  organization_id : int
+#Depending, we may use this joint table instead:
+(Joint-Table) Leagues-Teams
+  league_id : int
+  team_id : int
 
 Teams
-  Players
-  Coaches
-  ...
+  team_id : int
+  name : string
+  color : string
+  mascot : string
+  wins : int
+  losses : int
+  ties : int
+  roster? #Not sure how to represent that
+
+(Joint-Table) Teams-Player
+  team_id : int
+  player_id :int
+
+(Joint-Table) Teams-Managers
+  team_id : int
+  manager_id : int
+
+(Joint-Table) Teams-Coaches
+  team_id : int
+  coach_id : int
+
+(Joint-Table) Teams-Parents
+  team_id : int
+  parent_id : int
 
 People
-  Addresses
-  Phones
-  Emails
+  person_id : int
+  first_name : string
+  last_name : string
 
+(Joint Table) People-Addresses
+  person_id : int
+  address_id : int
 
+(Joint Table) People-Emails
+  person_id : int
+  email_id : int
+
+(Joint Table) People-Phones
+  person_id : int
+  phones_id : int
+
+Addresses
+  address_id : int
+  street1 : string
+  street2 : string
+  city : string
+  state : string
+  zip : int
+
+Phones
+  phone_id : int
+  number : string
+
+Emails
+  email_id : int
+  email : string
+  
+Managers
+  manager_id : int
+  person_id : int
+  team_id : int
+  organization_id : int
+  league_id : int
+
+Coaches
+  coach_id : int
+  person_id : int
+  team_id : int
+
+Players
+  player_id : int
+  person_id : int
+   
+Parents
+  parent_id : int
+  person_id : int
+  team_mom : boolean
+  
+# The following will be how we can relate all the specific 'class' of peopleback to teams, orgs, and leagues for communication reasons
+ 
+(Joint Table) Players-Team
+  player_id : int
+  team_id : int
+
+(Joint Table) Players-Parents
+  player_id : int
+  parent_id : int
+
+# Not sure if we need this one...
+(Joint Table) Parents-Players
+  parent_id : int
+  player_id : int
+
+(Joint Table) Parents-Teams
+  parent_id : int
+  team_id : int
+
+(Joint Table) Coaches-Teams
+  coach_id : int
+  team_id : int
+
+(Joint Table) Managers-Teams
+  manager_id : int
+  team_id : int
+
+(Joint Table) Managers-Organizations
+  manager_id : int
+  organizaion_id : int
+
+(Joint Table) Managers-Leagues
+  manager_id : int
+  league_id : int
