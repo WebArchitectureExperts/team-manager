@@ -1,0 +1,54 @@
+---------------------------------------
+            people
+---------------------------------------
+Table:  people
+  Attributes:
+    person_id     = int, primary key
+    first_name    = varchar
+    last_name     = varchar
+    email         = varchar
+    password_hash = varchar
+    created_on    = time stamp
+    parent1       = varchar
+    parent2       = varchar
+--------------------------------------
+
+--------------------------------------
+              roles
+--------------------------------------
+Table:  roles
+  Attributes:
+    role_id       = int, primary key
+    role_name     = varchar
+--------------------------------------
+
+--------------------------------------
+              poeple_has_roles
+--------------------------------------
+Table:  people_has_roles
+  Attributes:
+    people_person_id  = foreign key from people table
+    roles_role_id     = foreign key from roles table
+--------------------------------------
+
+
+-------------------------------------
+              teams
+--------------------------------------
+Table:  teams
+  Attributes:
+    team_id       = int, primary key
+    team_name     = varchar
+    coach_id      = varchar
+    created_on    = time stamp
+    cated_by      = int
+--------------------------------------
+
+-------------------------------------
+                team_members
+--------------------------------------
+Table: team_memebers
+  Attributes:
+    people_person_id  = foreign key, from people table
+    teams_team_id     = foreign key, from teams table.
+--------------------------------------
