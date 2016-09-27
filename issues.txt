@@ -1,0 +1,6 @@
+Current issues/missing abilties with the 'sports_org_erd_v3.mwb'
+
+1) Create a roster for a game.
+2) Archive all team information for a given year.
+3) Player and team accounting related to fees.
+
