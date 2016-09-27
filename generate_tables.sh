@@ -4,8 +4,9 @@
 # Ensure this script is executable (chmod 755 generate_tables.sh)
 # Then run this script (./generate_tables.sh)
 
-RAILS_PROJECT=team-manager/
+# NOTE: '\' does not effect the command, just a formatting thing
 
+RAILS_PROJECT=team-manager/
 cd $RAILS_PROJECT
 
 # Person (People) table
@@ -21,8 +22,41 @@ rails g scaffold phone_number phone:int person:references phone_id:string
 # Email (Emails) table
 rails g scaffold email email:string person:references
 
+# Certification (Certifications) table
+rails g scaffold certification person:references certification_name:string \
+expiration_date:datetime note:text
 
+# Role (Roles) table
+rails g scaffold role id:int description:string value:int
 
+# Team (Teams) tables
+rails g scaffold team id:int team_name:string competitive:boolean \
+age_group:string
+
+# Organization (Organizations) table
+rails g scaffold organization id:int name:string
+
+# Event_property_map table
+rails g scaffold event_property_map event_id:int key:string value:string
+
+# Event (Events) table
+rails g scaffold event id:int event_type:int event_datetime:datetime \
+team_id:int created_by:int open_to_public:boolean
+
+# Event_type table
+rails g scaffold event_type id:int type_description:string
+
+# Parent_children (Join table)
+#
+
+# Team_people (Join table?)
+#rails g scaffold team_people id:int person:references team:references
+
+# Team_person_roles (Join table)
+#
+
+# Organization_teams (Join table)
+#
 
 # Finally, db:migrate
 #rails db:migrate
