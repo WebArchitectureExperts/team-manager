@@ -1,0 +1,9 @@
+Team Manager Tasks:
+
+- refine ERD
+- generators
+- relationships/validations
+- read up about rolify(gem)
+- app(do as much as you can following the guideline revision 2)
+- populate the tables using:
+	Faker, or factory girl

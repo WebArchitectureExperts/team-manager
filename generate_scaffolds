@@ -1,0 +1,32 @@
+rails g scaffold teams name:string age_group:string
+
+rails g scaffold people last_name:string first_name:string DOB:date gender:string jersey_num:string
+
+rails g scaffold addresses address:string city:string state:string zip:string country:string
+
+rails g migration AddPeopleToPhones people phones
+rails g migration AddPeopleToTeams people teams
+
+
+class Address < ApplicationRecord
+  has_and_belongs_to_many :people
+  validates_presence_of :address
+  validates_presence_of :city
+  validates_presence_of :state
+end
+
+class Person < ApplicationRecord
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :DOB
+  validates_presence_of :gender
+  has_many :phones
+  has_and_belongs_to_many :addresses
+  has_many :teams
+end
+
+class Phone < ApplicationRecord
+  belongs_to :person
+  validates_presence_of :number
+  validates_presence_of :phone_type
+end
